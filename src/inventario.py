@@ -1,3 +1,5 @@
+from producto import Producto
+
 class Inventario:
     def __init__(self):
         # Atributo que almacena la colección de productos
