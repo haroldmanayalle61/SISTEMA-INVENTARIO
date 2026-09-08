@@ -1,1 +1,33 @@
 #PARTE D
+def busqueda_binaria(self, codigo_buscado):
+    """
+    Busqueda binaria manual sobre self._productos. 
+    Precondicion: la lista debe estar ordenada por codigo
+    (insertar() la mantiene ordenada; si se cargó con registrar(),
+    llamar antes a ordenar_por_codigo()).
+    """
+    comparaciones = 0
+    limite_inferior = 0
+    limite_superior = len(self._productos) - 1
+
+    while limite_inferior <= limite_superior:
+        posicion_central = (limite_inferior + limite_superior) // 2
+        comparaciones += 1
+        elemento_central = self._productos[posicion_central]
+
+        if elemento_central.codigo == codigo_buscado:
+            return {
+                "encontrado": True,
+                "posicion": posicion_central,
+                "comparaciones": comparaciones
+            }
+        elif elemento_central.codigo < codigo_buscado:
+            limite_inferior = posicion_central + 1
+        else:
+            limite_superior = posicion_central - 1
+
+    return {
+        "encontrado": False,
+        "posicion": -1,
+        "comparaciones": comparaciones
+    }
