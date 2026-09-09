@@ -72,4 +72,8 @@ class Inventario:
         """Método de apoyo para garantizar que la búsqueda binaria de Carlos funcione."""
         # Ordena la lista basándose en el atributo 'codigo' de cada objeto Producto
         self._productos.sort(key=lambda p: p.codigo)#lambda (función extractora del codigo)
+
+    def codigo_existe(self, codigo:int)->bool:
+        """Verifica si un código ya existe en el inventario."""
+        return any(producto.codigo == codigo for producto in self._productos)
 #REVISADO

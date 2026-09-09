@@ -60,7 +60,8 @@ def mostrar_matriz(matriz: list[list]) -> None:
     """B2: Muestra la matriz completa (encabezado y todas las filas de datos)."""
     for fila in matriz:
         for valor in fila:
-            print(f"\t{valor}", end="")
+            # :<15 alinea el texto a la izquierda y le asigna un ancho fijo de 15 caracteres
+            print(f"{str(valor):<15}", end="")
         print()
 
 

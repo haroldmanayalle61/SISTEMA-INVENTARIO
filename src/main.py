@@ -59,6 +59,9 @@ def menu_arreglo_lineal(inventario):
             codigo = leer_entero("Código: ")
             if codigo is None:
                 continue
+            if inventario.codigo_existe(codigo):
+                print("Error: el código ya existe en el inventario.")
+                continue
             nombre = input("Nombre: ")
             categoria = input("Categoría: ")
             precio = leer_flotante("Precio unitario: ")
