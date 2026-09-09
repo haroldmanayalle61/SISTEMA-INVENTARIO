@@ -4,9 +4,8 @@ from __future__ import annotations
 def busqueda_binaria(self, codigo_buscado:int)->dict[str,bool|int]:
     """
     Busqueda binaria manual sobre self._productos. 
-    Precondicion: la lista debe estar ordenada por codigo
-    (insertar() la mantiene ordenada; si se cargó con registrar(),
-    llamar antes a ordenar_por_codigo()).
+    Se debe llamar a ordenar_por_codigo() en el main antes de 
+    usar este método para garantizar que la lista esté ordenada.
     """
     comparaciones = 0
     limite_inferior = 0
