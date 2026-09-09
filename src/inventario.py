@@ -1,55 +1,54 @@
 from __future__ import annotations
 from producto import Producto
-
+from busqueda_secuencial import busqueda_secuencial as _busqueda_secuencial
+from busqueda_binaria import busqueda_binaria as _busqueda_binaria
 class Inventario:
-    def __init__(self,productos:list[Producto]):
+    def __init__(self):
         # Atributo que almacena la colección de productos
-        self._productos = []
+        self.__productos = []
 
     # GETTERS Y SETTERS
     @property
     def productos(self)->list[Producto]:
-        return self._productos
+        return self.__productos
 
     @productos.setter
     def productos(self, nueva_lista:list[Producto])->None:
-        self._productos = nueva_lista
+        self.__productos = nueva_lista
 
     
     # MÉTODOS BASE 
     def registrar(self, producto:Producto)->None:
         """A1: Añade un producto al final del arreglo."""
-        self._productos.append(producto)
+        self.__productos.append(producto)
 
     def listar(self)->None:
         """A2: Muestra todos los productos registrados."""
-        for producto in self._productos:
+        for producto in self.__productos:
             print(producto)
 
     def acceder(self, posicion:int)->Producto|None:
         """A3: Retorna un producto según su índice en el arreglo."""
-        if 0 <= posicion < len(self._productos):
-            return self._productos[posicion]
+        if 0 <= posicion < len(self.__productos):
+            return self.__productos[posicion]
         return None
 
     def contar(self)->int:
         """A7: Retorna la cantidad actual de productos."""
-        return len(self._productos)
+        return len(self.__productos)
 
     # PARTE A - MÉTODOS DE FERNANDO
-    def insertar(self, posicion:int, producto:int)->None:
+    def insertar(self, posicion:int, producto:Producto)->None:
         """A4: Inserta un producto en una posición indicada por el usuario."""
-        if 0 <= posicion <= len(self._productos):
-            self._productos.insert(posicion, producto)
-            # Coordinación con Carlos (Parte D): Mantener ordenado por código
-            self.ordenar_por_codigo()
+        if 0 <= posicion <= len(self.__productos):
+            self.__productos.insert(posicion, producto)
             print("Producto insertado correctamente.")
         else:
             print("Error: Posición fuera de rango.")
 
     def modificar(self, codigo:int, nuevo_precio:float, nuevo_stock:int)->bool:
         """A5: Modifica el precio y stock de un producto buscando por su código."""
-        for producto in self._productos:
+        for producto in self.__productos:
             if producto.codigo == codigo:
                 producto.precio_unitario = nuevo_precio
                 producto.stock_actual = nuevo_stock
@@ -60,9 +59,9 @@ class Inventario:
 
     def eliminar(self, codigo:int)->None:
         """A6: Elimina un producto según su código."""
-        for i in range(len(self._productos)):
-            if self._productos[i].codigo == codigo:
-                eliminado = self._productos.pop(i)
+        for i in range(len(self.__productos)):
+            if self.__productos[i].codigo == codigo:
+                eliminado = self.__productos.pop(i)
                 print(f"Producto {eliminado.codigo} eliminado del inventario.")
                 return True
         print("Error: Producto no encontrado para eliminar.")
@@ -71,9 +70,15 @@ class Inventario:
     def ordenar_por_codigo(self)->None:
         """Método de apoyo para garantizar que la búsqueda binaria de Carlos funcione."""
         # Ordena la lista basándose en el atributo 'codigo' de cada objeto Producto
-        self._productos.sort(key=lambda p: p.codigo)#lambda (función extractora del codigo)
+        self.__productos.sort(key=lambda p: p.codigo)#lambda (función extractora del codigo)
 
     def codigo_existe(self, codigo:int)->bool:
         """Verifica si un código ya existe en el inventario."""
-        return any(producto.codigo == codigo for producto in self._productos)
+        return any(producto.codigo == codigo for producto in self.__productos)
+
+    def busqueda_secuencial(self, codigo:int)->dict[str,bool|int]:
+        return _busqueda_secuencial(self, codigo)
+
+    def busqueda_binaria(self, codigo:int)->dict[str,bool|int]:
+        return _busqueda_binaria(self, codigo)
 #REVISADO

@@ -5,17 +5,11 @@ import random
 
 from producto import Producto
 from inventario import Inventario
-from busqueda_secuencial import busqueda_secuencial
-from busqueda_binaria import busqueda_binaria
-
-Inventario.busqueda_secuencial = busqueda_secuencial
-Inventario.busqueda_binaria = busqueda_binaria
-
 
 def generar_inventario_prueba(cantidad):
     # Crea un inventario con "cantidad" productos, codigos de 0 a cantidad-1
     categorias = ["Abarrotes", "Limpieza", "Electronica", "Ferreteria", "Papeleria"]
-    inventario = Inventario([])
+    inventario = Inventario()#equivalente en java a Inventario inventario = new Inventario();
     for codigo in range(cantidad):
         nombre = "Producto" + str(codigo)
         categoria = random.choice(categorias)

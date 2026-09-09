@@ -10,12 +10,12 @@ def busqueda_binaria(self, codigo_buscado:int)->dict[str,bool|int]:
     """
     comparaciones = 0
     limite_inferior = 0
-    limite_superior = len(self._productos) - 1
+    limite_superior = len(self.productos) - 1
 
     while limite_inferior <= limite_superior:
         posicion_central = (limite_inferior + limite_superior) // 2
         comparaciones += 1
-        elemento_central = self._productos[posicion_central]
+        elemento_central = self.productos[posicion_central]
 
         if elemento_central.codigo == codigo_buscado:
             return {

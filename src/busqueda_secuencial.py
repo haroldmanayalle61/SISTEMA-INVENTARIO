@@ -3,7 +3,7 @@ from __future__ import annotations
 def busqueda_secuencial(self, codigo_buscado)->dict[str,bool|int]:
     comparaciones = 0
     # Recorremos el arreglo lineal de objetos Producto
-    for i, producto in enumerate(self._productos):
+    for i, producto in enumerate(self.productos):
         comparaciones += 1
         if producto.codigo == codigo_buscado:
             return {

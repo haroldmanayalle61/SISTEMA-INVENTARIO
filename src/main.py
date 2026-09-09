@@ -11,15 +11,8 @@ Integra en un solo flujo:
 
 from producto import Producto
 from inventario import Inventario
-from busqueda_secuencial import busqueda_secuencial
-from busqueda_binaria import busqueda_binaria
 import matriz_stock as ms
 import pruebas_eficiencia as pe
-
-# Las búsquedas se "pegan" a Inventario como métodos, ya que están
-# escritas como funciones sueltas que reciben self como primer parámetro.
-Inventario.busqueda_secuencial = busqueda_secuencial
-Inventario.busqueda_binaria = busqueda_binaria
 
 NUM_ALMACENES = 3
 
@@ -90,7 +83,12 @@ def menu_arreglo_lineal(inventario):
             posicion = leer_entero("Posición donde insertar: ")
             if posicion is None:
                 continue
-            codigo = leer_entero("Código: ")
+            while True:    
+                codigo = leer_entero("Código: ")
+                if inventario.codigo_existe(codigo):
+                    print("Error: el código ya existe en el inventario. Ingresa otro.")
+                else:
+                    break
             nombre = input("Nombre: ")
             categoria = input("Categoría: ")
             precio = leer_flotante("Precio unitario: ")
@@ -230,7 +228,7 @@ def menu_pruebas_eficiencia():
 
 # MENÚ PRINCIPAL
 def menu_principal():
-    inventario = Inventario([])
+    inventario = Inventario()
     estado = {"matriz": None}
 
     print("=== SISTEMA DE GESTIÓN DE INVENTARIO ===")
