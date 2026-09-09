@@ -1,5 +1,7 @@
+from __future__ import annotations
 #PARTE D
-def busqueda_binaria(self, codigo_buscado):
+
+def busqueda_binaria(self, codigo_buscado:int)->dict[str,bool|int]:
     """
     Busqueda binaria manual sobre self._productos. 
     Precondicion: la lista debe estar ordenada por codigo
@@ -31,3 +33,4 @@ def busqueda_binaria(self, codigo_buscado):
         "posicion": -1,
         "comparaciones": comparaciones
     }
+#REVISADO

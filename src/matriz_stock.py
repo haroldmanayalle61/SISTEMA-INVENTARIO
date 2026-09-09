@@ -1,6 +1,7 @@
-#PARTE B - ARREGLO BIDIMENSIONAL (MATRIZ DE STOCK)
+from __future__ import annotations
 import random
 from inventario import Inventario
+#PARTE B - ARREGLO BIDIMENSIONAL (MATRIZ DE STOCK)
 
 def generar_encabezado(num_almacenes: int) -> list[str]:
     """Construye la fila de encabezado con el nombre de cada almacén."""

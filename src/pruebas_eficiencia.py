@@ -15,7 +15,7 @@ Inventario.busqueda_binaria = busqueda_binaria
 def generar_inventario_prueba(cantidad):
     # Crea un inventario con "cantidad" productos, codigos de 0 a cantidad-1
     categorias = ["Abarrotes", "Limpieza", "Electronica", "Ferreteria", "Papeleria"]
-    inventario = Inventario()
+    inventario = Inventario([])
     for codigo in range(cantidad):
         nombre = "Producto" + str(codigo)
         categoria = random.choice(categorias)

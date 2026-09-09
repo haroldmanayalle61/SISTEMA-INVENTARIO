@@ -1,5 +1,6 @@
+from __future__ import annotations
 #PARTE C
-def busqueda_secuencial(self, codigo_buscado):
+def busqueda_secuencial(self, codigo_buscado)->dict[str,bool|int]:
     comparaciones = 0
     # Recorremos el arreglo lineal de objetos Producto
     for i, producto in enumerate(self._productos):
@@ -15,3 +16,4 @@ def busqueda_secuencial(self, codigo_buscado):
         "posicion": -1, 
         "comparaciones": comparaciones
     }
+#REVISADO

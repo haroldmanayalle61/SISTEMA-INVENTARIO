@@ -1,40 +1,43 @@
+from __future__ import annotations
 from producto import Producto
 
 class Inventario:
-    def __init__(self):
+    def __init__(self,productos:list[Producto]):
         # Atributo que almacena la colección de productos
         self._productos = []
 
     # GETTERS Y SETTERS
-    def get_productos(self):
+    @property
+    def productos(self)->list[Producto]:
         return self._productos
 
-    def set_productos(self, nueva_lista):
+    @productos.setter
+    def productos(self, nueva_lista:list[Producto])->None:
         self._productos = nueva_lista
 
     
     # MÉTODOS BASE 
-    def registrar(self, producto):
+    def registrar(self, producto:Producto)->None:
         """A1: Añade un producto al final del arreglo."""
         self._productos.append(producto)
 
-    def listar(self):
+    def listar(self)->None:
         """A2: Muestra todos los productos registrados."""
         for producto in self._productos:
             print(producto)
 
-    def acceder(self, posicion):
+    def acceder(self, posicion:int)->Producto|None:
         """A3: Retorna un producto según su índice en el arreglo."""
         if 0 <= posicion < len(self._productos):
             return self._productos[posicion]
         return None
 
-    def contar(self):
+    def contar(self)->int:
         """A7: Retorna la cantidad actual de productos."""
         return len(self._productos)
 
     # PARTE A - MÉTODOS DE FERNANDO
-    def insertar(self, posicion, producto):
+    def insertar(self, posicion:int, producto:int)->None:
         """A4: Inserta un producto en una posición indicada por el usuario."""
         if 0 <= posicion <= len(self._productos):
             self._productos.insert(posicion, producto)
@@ -44,10 +47,10 @@ class Inventario:
         else:
             print("Error: Posición fuera de rango.")
 
-    def modificar(self, codigo, nuevo_precio, nuevo_stock):
+    def modificar(self, codigo:int, nuevo_precio:float, nuevo_stock:int)->bool:
         """A5: Modifica el precio y stock de un producto buscando por su código."""
         for producto in self._productos:
-            if producto.codigo == codigo: # Asume que Harold creó el atributo 'codigo'
+            if producto.codigo == codigo:
                 producto.precio_unitario = nuevo_precio
                 producto.stock_actual = nuevo_stock
                 print(f"Producto {codigo} modificado con éxito.")
@@ -55,7 +58,7 @@ class Inventario:
         print("Error: Producto no encontrado para modificar.")
         return False
 
-    def eliminar(self, codigo):
+    def eliminar(self, codigo:int)->None:
         """A6: Elimina un producto según su código."""
         for i in range(len(self._productos)):
             if self._productos[i].codigo == codigo:
@@ -65,7 +68,8 @@ class Inventario:
         print("Error: Producto no encontrado para eliminar.")
         return False
 
-    def ordenar_por_codigo(self):
+    def ordenar_por_codigo(self)->None:
         """Método de apoyo para garantizar que la búsqueda binaria de Carlos funcione."""
         # Ordena la lista basándose en el atributo 'codigo' de cada objeto Producto
-        self._productos.sort(key=lambda p: p.codigo)
+        self._productos.sort(key=lambda p: p.codigo)#lambda (función extractora del codigo)
+#REVISADO

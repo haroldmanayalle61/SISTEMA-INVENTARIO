@@ -227,7 +227,7 @@ def menu_pruebas_eficiencia():
 
 # MENÚ PRINCIPAL
 def menu_principal():
-    inventario = Inventario()
+    inventario = Inventario([])
     estado = {"matriz": None}
 
     print("=== SISTEMA DE GESTIÓN DE INVENTARIO ===")
