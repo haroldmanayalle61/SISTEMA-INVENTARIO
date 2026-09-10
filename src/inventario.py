@@ -40,32 +40,43 @@ class Inventario:
     # PARTE A - MÉTODOS DE FERNANDO
     def insertar(self, posicion:int, producto:Producto)->None:
         """A4: Inserta un producto en una posición indicada por el usuario."""
-        if 0 <= posicion <= len(self.__productos):
-            self.__productos.insert(posicion, producto)
-            print("Producto insertado correctamente.")
-        else:
-            print("Error: Posición fuera de rango.")
 
-    def modificar(self, codigo:int, nuevo_precio:float, nuevo_stock:int)->bool:
+        if posicion < 0 or posicion > len(self.__productos):
+            return False
+
+        self.__productos.append(None)
+
+        for i in range(len(self.__productos)-1, posicion, -1):
+            self.__productos[i] = self.__productos[i-1]
+
+        self.__productos[posicion] = producto
+
+        return True
+        
+
+    def modificar(self, posicion:int, producto:Producto)->bool:
         """A5: Modifica el precio y stock de un producto buscando por su código."""
-        for producto in self.__productos:
-            if producto.codigo == codigo:
-                producto.precio_unitario = nuevo_precio
-                producto.stock_actual = nuevo_stock
-                print(f"Producto {codigo} modificado con éxito.")
-                return True
-        print("Error: Producto no encontrado para modificar.")
-        return False
 
-    def eliminar(self, codigo:int)->None:
+        if posicion < 0 or posicion >= len(self.__productos):
+            return False
+
+        self.__productos[posicion] = producto
+
+        return True
+
+    def eliminar(self, posicion:int)->bool:
         """A6: Elimina un producto según su código."""
-        for i in range(len(self.__productos)):
-            if self.__productos[i].codigo == codigo:
-                eliminado = self.__productos.pop(i)
-                print(f"Producto {eliminado.codigo} eliminado del inventario.")
-                return True
-        print("Error: Producto no encontrado para eliminar.")
-        return False
+
+        if posicion < 0 or posicion >= len(self.__productos):
+            return False
+
+        for i in range(posicion, len(self.__productos)-1):
+            self.__productos[i] = self.__productos[i+1]
+
+        self.__productos.pop()
+
+        return True
+        
 
     def ordenar_por_codigo(self)->None:
         # Ordenar la lista de productos por código usando el método sort() y una función lambda
