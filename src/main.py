@@ -42,8 +42,8 @@ def menu_arreglo_lineal(inventario):
         print("2. Listar productos")
         print("3. Acceder por posicion")
         print("4. Insertar en una posicion")
-        print("5. Modificar producto (por codigo)")
-        print("6. Eliminar producto (por codigo)")
+        print("5. Modificar producto (por posicion)")
+        print("6. Eliminar producto (por posicion)")
         print("7. Contar productos")
         print("0. Volver al menu principal")
         opcion = input("Elige una opcion: ").strip()
@@ -98,20 +98,36 @@ def menu_arreglo_lineal(inventario):
             inventario.insertar(posicion, Producto(codigo, nombre, categoria, precio, stock))
 
         elif opcion == "5":
-            codigo = leer_entero("Codigo del producto a modificar: ")
-            if codigo is None:
+            posicion = leer_entero("Posicion del producto a modificar: ")
+            if posicion is None:
+                continue
+            producto_actual = inventario.acceder(posicion)
+            if producto_actual is None:
+                print("Error: posicion fuera de rango.")
                 continue
             precio = leer_flotante("Nuevo precio: ")
             stock = leer_entero("Nuevo stock: ")
             if precio is None or stock is None:
                 continue
-            inventario.modificar(codigo, precio, stock)
+            try:
+                nuevo_producto = Producto(producto_actual.codigo, producto_actual.nombre, producto_actual.categoria, precio, stock)
+                if inventario.modificar(posicion, nuevo_producto):
+                    print("Producto modificado con exito.")
+                else:
+                    print("Error: Posicion fuera de rango")
+            except ValueError as error:
+                print(f"Error: {error}")
 
         elif opcion == "6":
-            codigo = leer_entero("Codigo del producto a eliminar: ")
-            if codigo is None:
+            posicion = leer_entero("Posicion del producto a eliminar: ")
+            if posicion is None:
                 continue
-            inventario.eliminar(codigo)
+            producto_actual = inventario.acceder(posicion)
+            if inventario.eliminar(posicion):
+                print(f"Producto {producto_actual.nombre} (Código: {producto_actual.codigo}) eliminado del inventario")
+            else:
+                print("Error: Posicion fuera de rango")
+
 
         elif opcion == "7":
             print(f"Total de productos: {inventario.contar()}")

@@ -38,7 +38,7 @@ class Inventario:
         return len(self.__productos)
 
     # PARTE A - MÉTODOS DE FERNANDO
-    def insertar(self, posicion:int, producto:Producto)->None:
+    def insertar(self, posicion:int, producto:Producto)->bool:
         """A4: Inserta un producto en una posición indicada por el usuario."""
 
         if posicion < 0 or posicion > len(self.__productos):
@@ -55,7 +55,7 @@ class Inventario:
         
 
     def modificar(self, posicion:int, producto:Producto)->bool:
-        """A5: Modifica el precio y stock de un producto buscando por su código."""
+        """A5: Modifica un producto según su posición dentro del arreglo."""
 
         if posicion < 0 or posicion >= len(self.__productos):
             return False
@@ -65,7 +65,7 @@ class Inventario:
         return True
 
     def eliminar(self, posicion:int)->bool:
-        """A6: Elimina un producto según su código."""
+        """A6: Elimina un producto según su posición dentro del arreglo."""
 
         if posicion < 0 or posicion >= len(self.__productos):
             return False
