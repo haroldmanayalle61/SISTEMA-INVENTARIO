@@ -73,7 +73,7 @@ class Inventario:
         for i in range(posicion, len(self.__productos)-1):
             self.__productos[i] = self.__productos[i+1]
 
-        self.__productos.pop()
+        self.__productos.pop() #Elimina el ultimo elemento que ahora esta duplicado
 
         return True
         

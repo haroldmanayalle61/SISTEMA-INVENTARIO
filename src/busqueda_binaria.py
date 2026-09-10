@@ -3,7 +3,7 @@ from __future__ import annotations
 
 def busqueda_binaria(self, codigo_buscado:int)->dict[str,bool|int]:
     """
-    Busqueda binaria manual sobre self._productos. 
+    Busqueda binaria manual sobre self.__productos. 
     Se debe llamar a ordenar_por_codigo() en el main antes de 
     usar este método para garantizar que la lista esté ordenada.
     """

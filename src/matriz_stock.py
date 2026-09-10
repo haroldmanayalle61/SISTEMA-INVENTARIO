@@ -57,7 +57,7 @@ def generar_matriz(inventario: Inventario, num_almacenes: int) -> list[list]:
 
 
 def mostrar_matriz(matriz: list[list]) -> None:
-    """B2: Muestra la matriz completa (encabezado y todas las filas de datos)."""
+    """B2: Muestra la matriz completa"""
     for fila in matriz:
         for valor in fila:
             # :<15 alinea el texto a la izquierda y le asigna un ancho fijo de 15 caracteres

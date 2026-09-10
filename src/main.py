@@ -95,7 +95,10 @@ def menu_arreglo_lineal(inventario):
             stock = leer_entero("Stock actual: ")
             if None in (codigo, precio, stock):
                 continue
-            inventario.insertar(posicion, Producto(codigo, nombre, categoria, precio, stock))
+            if (inventario.insertar(posicion, Producto(codigo, nombre, categoria, precio, stock))):
+                print("Producto insertado con exito.")
+            else:
+                print("Error: Posicion fuera de rango")
 
         elif opcion == "5":
             posicion = leer_entero("Posicion del producto a modificar: ")
